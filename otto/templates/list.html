@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+  <head>
+    <title> API</title>
+  </head>
+  <body>
+    <form class="form" id ="Myform" >
+      {% csrf_token %}
+      <input type="text" id="username" placeholder="username"/>
+      <input type="text" id="password" placeholder="password"/>
+      <input type="submit" id="button1" value="login"/>
+    
+    </form>
+  </body>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript">
+    var username=document.getElementById('username').value
+    var password=document.getElementById('password').value
+
+    $(document).ready(function() {
+        $('#button1').click(function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                data: {
+                    email: $('#username').val(),
+                    password: $('#password').val()
+                },
+                url: 'http://127.0.0.1:8000/login/',
+                success: function (data) {
+                    console.log(data)
+                },
+                error: function (data) {
+                    alert("error");
+                }
+            });
+        });
+    });
+
+</script>
+</html>
